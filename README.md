@@ -10,12 +10,12 @@ async function timeout<T>(promise: Promise<T>, delay: number): Promise<T>
 
 ## Install
 
-    $ deno cache ...
+    $ deno cache https://deno.land/x/timeout@1.0/mod.ts
 
 ## Usage
 
 ```typescript
-import { timeout, TimeoutError } from "..."
+import { timeout, TimeoutError } from "https://deno.land/x/timeout@1.0/mod.ts"
 
 try{
     const promise = fetch("...")
