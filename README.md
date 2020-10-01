@@ -8,7 +8,7 @@ Very useful for racing strategies using Promise.race or Abort.race.
 
     $ deno cache https://deno.land/x/timeout/mod.ts
 
-## Usage with 
+## Usage with await
 
 ```typescript
 import { Timeout, TimeoutError } from "https://deno.land/x/timeout/mod.ts"
@@ -24,6 +24,18 @@ try {
     if(e instanceof AbortSignal)
         // Aborted
 }
+```
+
+## Usage with callbacks
+
+Since they reject when timed out, and reject when aborted, they never resolve.
+
+```typescript
+import { Timeout, TimeoutError } from "https://deno.land/x/timeout/mod.ts"
+
+Timeout.promise(1000)
+    .catch((e) => console.error("Timed out or aborted"))
+    .abort()
 ```
 
 ## Usage with racing Promises
