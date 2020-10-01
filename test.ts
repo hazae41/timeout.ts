@@ -1,13 +1,19 @@
-import { timeout, TimeoutError } from "./mod.ts"
+import { Abort } from "https://deno.land/x/abortable/mod.ts"
+import { Timeout } from "./mod.ts"
 
 const [_delay] = Deno.args
 
 try {
   const delay = Number(_delay) || 1000
-  const promise = fetch("http://example.com")
-  const res = await timeout(promise, delay)
-  console.log(res.statusText)
+
+  const req1 = Abort.fetch("https://deno.land/x/abortable")
+    .then(() => "Abortable")
+
+  const req2 = Abort.fetch("https://deno.land/x/timeout")
+    .then(() => "Timeout")
+
+  const winner = await Timeout.race([req1, req2], delay)
+  console.log(winner, "won")
 } catch (e) {
-  if (e instanceof TimeoutError)
-    console.log("Timeout!")
+  console.error(e)
 }
