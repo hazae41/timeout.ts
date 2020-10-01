@@ -1,6 +1,6 @@
 # Timeout for Deno
 
-Creates (abortable) promises that rejects when the delay is exceeded.
+Create (abortable) promises that rejects when the delay is exceeded.
 
 Very useful for racing strategies using Promise.race or Abort.race.
 
