@@ -13,14 +13,12 @@ Very useful for racing strategies using Promise.race or Abort.race.
 ```typescript
 import { Timeout, TimeoutError } from "https://deno.land/x/timeout/mod.ts"
 
-const timeout = Timeout.promise(1000)
+const timeout = Timeout.wait(1000)
 
 try {
-    timeout.abort()
+    timeout.abort() // Comment me
     await timeout
 } catch(e){
-    if(e instanceof TimeoutError)
-        // Timed out
     if(e instanceof AbortSignal)
         // Aborted
 }
@@ -28,14 +26,18 @@ try {
 
 ## Usage with callbacks
 
-Since they reject when timed out, and reject when aborted, they never resolve.
-
 ```typescript
 import { Timeout, TimeoutError } from "https://deno.land/x/timeout/mod.ts"
 
-Timeout.promise(1000)
+// Will resolve when timed out
+Timeout.wait(1000)
+    .then(() => console.log("That was long!"))
+    .catch(() => console.error("Aborted"))
+
+// Will reject with TimeoutError when timed out
+Timeout.error(2000)
     .catch((e) => console.error("Timed out or aborted"))
-    .abort()
+    .abort() // Comment me
 ```
 
 ## Usage with racing Promises
