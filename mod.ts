@@ -1,7 +1,7 @@
 import { Abort, Abortable } from "https://deno.land/x/abortable/mod.ts"
 
 export class TimeoutError extends Error {
-  constructor() { super("Timeout") }
+  constructor() { super("Timed out") }
 }
 
 export namespace Timeout {
