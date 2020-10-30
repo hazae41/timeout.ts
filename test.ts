@@ -1,4 +1,4 @@
-import { Abort } from "https://deno.land/x/abortable/mod.ts"
+import { Abort } from "./deps/abortable.ts"
 import { Timeout } from "./mod.ts"
 
 const [_delay] = Deno.args

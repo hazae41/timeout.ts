@@ -1,4 +1,4 @@
-import { Abort, Abortable } from "https://deno.land/x/abortable/mod.ts"
+import { Abort, Abortable } from "./deps/abortable.ts"
 
 export class TimeoutError extends Error {
   constructor() { super("Timed out") }
